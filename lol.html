@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume App - Modal Example</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Link to jQuery from a CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Example Post Items -->
+    <div class="post" data-title="My First Post" data-description="This is a description of my first post.">
+        Click to view post
+    </div>
+    <div class="post" data-title="Another Post" data-description="Here's some information on another post.">
+        Click to view post
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Post Title</h2>
+            <p id="modalDescription">Post description goes here.</p>
+            <button id="editPost">Edit</button>
+        </div>
+    </div>
+
+    <!-- jQuery Script to Handle Modal Logic -->
+    <script>
+        $(document).ready(function () {
+            console.log("LOLOL")
+            // Open modal when a post is clicked
+            $(".post").on("click", function () {
+                // Retrieve post title and description from data attributes
+                let title = $(this).data("title");
+                let description = $(this).data("description");
+
+                // Set modal content with the retrieved data
+                $("#modalTitle").text(title);
+                $("#modalDescription").text(description);
+
+                // Show the modal
+                $("#postModal").fadeIn();
+            });
+
+            // Close modal when clicking 'x' or outside the modal content
+            $(".close, .modal").on("click", function (event) {
+                if (event.target === this) {
+                    $("#postModal").fadeOut();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
