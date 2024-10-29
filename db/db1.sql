@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Oct 28, 2024 at 07:17 AM
+-- Generation Time: Oct 29, 2024 at 10:15 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.2.8
 
@@ -34,8 +34,9 @@ CREATE TABLE `events` (
   `description` text NOT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
-  `start_time` timestamp NOT NULL,
-  `duration` int NOT NULL COMMENT 'minutes'
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -50,6 +51,13 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
+(2, 'asd', '$2y$10$334NgrNgG9KBjK8syvHGru8XsG4j9g/OYZsmAtyosTh9qXxYh3cma', '2024-10-29 08:21:42');
 
 --
 -- Indexes for dumped tables
@@ -82,17 +90,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `user_id_constarint` FOREIGN KEY (`id`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

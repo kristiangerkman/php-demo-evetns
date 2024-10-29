@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,29 +52,29 @@
             <span class="close">&times;</span>
             <h1>Create Event</h1>
             <div class="card-form" id="card-form">
-                <form action="post_actions.php" method="post">
+                <form action="" method="post">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" />
+                    <input type="text" id="title" name="create-title" />
 
                     <label for="description">Description:</label>
-                    <textarea name="description" id="description" rows="4"></textarea>
+                    <textarea id="description" rows="4" name="create-description"></textarea>
 
                     <div class="select-date-container">
                         <label for="date-picker">Date:</label>
                         <p id="date-picker" class="select-date">Click to select a date</p>
-                        <input type="hidden" id="date-input" name="date">
+                        <input type="hidden" id="date-input" name="create-date">
                     </div>
 
                     <div class="select-time-container">
                         <label for="start-time-picker">Start Time:</label>
                         <p id="start-time-picker" class="select-time">00:00</p>
-                        <input type="hidden" id="start-time-input" name="start_time">
+                        <input type="hidden" id="start-time-input" name="create-start_time">
                     </div>
 
                     <div class="select-time-container">
                         <label for="end-time-picker">End Time:</label>
                         <p id="end-time-picker" class="select-time">00:00</p>
-                        <input type="hidden" id="end-time-input" name="end_time">
+                        <input type="hidden" id="end-time-input" name="create-end_time">
                     </div>
 
                     <div class="button-container">

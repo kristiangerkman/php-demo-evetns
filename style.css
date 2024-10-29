@@ -1,7 +1,8 @@
 :root {
     --bg-color: #000000;            /* Background color (black) */
     --text-color: #FFFFFF;          /* Text color (white) */
-    --button-color: #9B5DFD;        /* Button color (purple) */
+    --button-color: #7209b7;        /* Button color (purple) */
+    --button-hover-color: #5e0793;
     --icon-color: #CCCCCC;          /* Icon color (light gray) */
 }
 /* Basic Reset */
@@ -22,19 +23,32 @@ body {
     font-family: Arial, sans-serif;
 }
 
-p, h1, label, input[type="button"] {
+a, p, h1, label, input[type="button"], input[type="submit"] {
     font-variant: small-caps;
 }
 
-
+.logout-button,
 .button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #7209b7;
+    background-color: var(--button-color);
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
+
+}
+
+.logout-button {
+    text-decoration: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.logout-button:hover,
+.button:hover {
+    background-color: #56007b;
 }
 
 /* Button Container */
@@ -60,9 +74,6 @@ p, h1, label, input[type="button"] {
     color: var(--button-color)
 }
 
-.button-container .button:hover {
-    background-color: #56007b;
-}
 
 .icon {
     color: var(--icon-color);
@@ -172,14 +183,15 @@ p, h1, label, input[type="button"] {
 }
 
 .error-container {
-    display: none;
+    /* display: none; */
     border: 1px solid red;
     margin-bottom: 15px;
     padding: 10px;
+    width: 350px;
+
 }
 
 .error-container p {
-    width: 350px;
     color: red;
     text-align: center;
 }
@@ -237,6 +249,7 @@ p, h1, label, input[type="button"] {
     border: 1px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 300px;
+    min-width: 300px;
     margin: 10px auto;
     position: relative;
     font-family: Arial, sans-serif;
@@ -291,3 +304,12 @@ p, h1, label, input[type="button"] {
 .event-card .close:nth-child(7):hover {
     color: #ccccff;
 }
+
+.dashboard {
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+.dashboard::-webkit-scrollbar {
+    display: none;
+  }
