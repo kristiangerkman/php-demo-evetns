@@ -12,10 +12,7 @@
 <?php
 require_once 'classes/eventHandler.php';
 require_once 'classes/dbHandler.php';
-?>
 
-
-<?php
 $db_handler = new DatabaseHandler();
 $db = $db_handler->connect();
 $event_handler = new EventHandler();
@@ -70,7 +67,6 @@ if (
 }
 ?>
 
-
 <!-- UPDATE -->
 <?php
 
@@ -114,7 +110,6 @@ if (
 }
 ?>
 
-
 <!-- DELETE -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
@@ -132,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
 ?>
 
 <?php 
-include 'components/card_form.php';
+include 'components/event_form.php';
+include 'components/edit_event_form.php';
 ?>
-<?php include 'components/edit_card_form.php'; ?>
 
 <script>
     const calculateDuration = (st, et) => {
@@ -150,17 +145,10 @@ include 'components/card_form.php';
         var hours = Number(eh) - Number(sh)
         var mins = Number(sm) + Number(em)
 
-        console.log(hours)
-        console.log(mins)
-
         if (mins >= 60) {
             hours += Math.round(mins / 60)
             mins = mins % 60
         }
-
-        console.log(hours)
-        console.log(mins)
-
 
         var txh = `Duration: ${hours} hours`
         var txm = mins ? ` ${mins} minutes` : ''
@@ -206,7 +194,6 @@ include 'components/card_form.php';
                     var id_name = "#card-duration-<?php echo $event["id"] ?>";
                     var start_time = "<?php echo $event["start_time"] ?>";
                     var end_time = "<?php echo $event["end_time"] ?>";
-                    console.log(id_name, start_time, end_time)
                     $(id_name).text(calculateDuration(start_time, end_time));
                 </script>
         <?php }

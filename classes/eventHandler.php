@@ -42,7 +42,7 @@ class EventHandler
     function update_event($db, $event_id, $title, $description, $date, $start_time, $end_time)
     {
         $error = null;
-    
+
         $sql = "UPDATE events SET
                     title = ?,
                     description = ?,
@@ -51,17 +51,17 @@ class EventHandler
                     end_time = ?,
                     updated_at = NOW()
                 WHERE id = ?";
-    
+
         if (!($stmt = $db->prepare($sql))) {
             $error = "Prepare failed: (" . $db->errno . ") " . $db->error;
             return $error;
         }
-    
+
         if (!$stmt->bind_param("sssssi", $title, $description, $date, $start_time, $end_time, $event_id)) {
             $error = "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
             return $error;
         }
-    
+
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
                 return true;
@@ -88,9 +88,8 @@ class EventHandler
         $stmt->bind_param('i', $event_id);
 
         if ($stmt->execute()) {
-            // Confirm if a row was actually deleted
             if ($stmt->affected_rows > 0) {
-                return true; // Successfully deleted
+                return true;
             } else {
                 return "No event found with the specified ID.";
             }

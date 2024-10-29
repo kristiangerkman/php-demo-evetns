@@ -45,7 +45,6 @@ if (isset($_POST['login-username']) && isset($_POST['login-password'])) {
         die("Connection error.");
     }
 
-    // Sanitize and escape inputs
     $login_username = $db->real_escape_string(strip_tags($_POST['login-username']));
     $login_password = $db->real_escape_string(strip_tags($_POST['login-password']));
 
@@ -53,12 +52,10 @@ if (isset($_POST['login-username']) && isset($_POST['login-password'])) {
     $res = $userhandler->login($db, $login_username, $login_password);
 
     if (is_int($res)) {
-        // Login successful: set session variable and reload the page
         $_SESSION['user_id'] = $res;
         echo '<script>window.location.reload();</script>';
         exit;
     } else {
-        // Login failed: display error message
         $error = generateError($res);
     }
 }
@@ -120,17 +117,15 @@ if (isset($_POST['login-username']) && isset($_POST['login-password'])) {
             $('#create-account-link').click(function() {
                 $('#login-form').hide();
                 $('#register-form').show();
-                clearInputs(); // Clear all input fields
+                clearInputs(); 
             });
 
-            // Switch to Login form
             $('#login-link').click(function() {
                 $('#register-form').hide();
                 $('#login-form').show();
-                clearInputs(); // Clear all input fields
+                clearInputs(); 
             });
 
-            // Function to clear all input fields
             function clearInputs() {
                 $('#login-username, #login-password, #register-username, #register-password, #register-confirm-password').val('');
             }

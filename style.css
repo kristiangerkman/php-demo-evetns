@@ -1,10 +1,12 @@
 :root {
-    --bg-color: #000000;            /* Background color (black) */
-    --text-color: #FFFFFF;          /* Text color (white) */
-    --button-color: #7209b7;        /* Button color (purple) */
+    /* Color Variables */
+    --bg-color: #000000;
+    --text-color: #FFFFFF;
+    --button-color: #7209b7;
     --button-hover-color: #5e0793;
-    --icon-color: #CCCCCC;          /* Icon color (light gray) */
+    --icon-color: #CCCCCC;
 }
+
 /* Basic Reset */
 * {
     margin: 0;
@@ -12,31 +14,37 @@
     box-sizing: border-box;
 }
 
-/* Modal Background */
+/* Page Background and Font */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000; /* Adjust this if you want a dimmed background effect */
-    height: 100vh;
-    color: #fff; /* Text color for readability */
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
+    height: 100vh;
 }
 
-a, p, h1, label, input[type="button"], input[type="submit"] {
+/* Global Font Styles */
+a,
+p,
+h1,
+label,
+input[type="button"],
+input[type="submit"] {
     font-variant: small-caps;
 }
 
+/* Button Styling */
 .logout-button,
 .button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     background-color: var(--button-color);
-    color: #fff;
+    color: var(--text-color);
     cursor: pointer;
     transition: background-color 0.2s ease;
-
 }
 
 .logout-button {
@@ -48,7 +56,7 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
 
 .logout-button:hover,
 .button:hover {
-    background-color: #56007b;
+    background-color: var(--button-hover-color);
 }
 
 /* Button Container */
@@ -66,94 +74,89 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     font-weight: bold;
     text-align: left;
     text-decoration: underline;
-
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .button-container p:hover {
-    cursor: pointer;
-    color: var(--button-color)
+    color: var(--button-color);
 }
 
-
+/* Icon Styling */
 .icon {
     color: var(--icon-color);
 }
 
+/* Modal Background and Content */
 .modal {
-    z-index: 9999;
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay effect */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 .modal-content {
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
     max-width: 500px;
 }
 
-/* Modal Container */
+/* Form Container for Modal */
 .form-container.modal-content {
     background-color: #0d0d0d;
-    border: 1px solid white;
+    border: 1px solid var(--text-color);
     width: 450px;
     padding: 20px;
-    position: relative;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-.modal-content > h1 {
-    margin-top: 0px;
-
+.form-container h1,
+.modal-content>h1 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #f8f8f8;
 }
 
-/* Close Button */
+/* Close Button in Modal */
 .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
+    top: 30px;
+    right: 55px;
+    font-size: 40px;
     cursor: pointer;
-    color: #fff;
+    color: var(--text-color);
 }
 
-
+/* Main Content */
 .main-content {
     display: flex;
     flex-direction: column;
-    align-items: center;       /* Center content horizontally */
-    justify-content: center;   /* Center content vertically */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    min-height: 100vh;         /* Ensure it takes the full viewport height */
+    min-height: 100vh;
 }
 
+/* Login Form */
 .login-form {
     width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid var(--text-color);
     background-color: #0d0d0d;
     padding: 15px 0px 20px 0px;
 }
 
 .login-form form {
     width: 85%;
-}
-
-
-.form-container h1 {
-    font-size: 1.5em;
-    text-align: center;
-    margin-bottom: 15px;
-    color: #f8f8f8;
 }
 
 /* Label Styles */
@@ -174,7 +177,7 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     border-radius: 4px;
     margin-bottom: 15px;
     background-color: #1c1c1c;
-    color: #fff;
+    color: var(--text-color);
     resize: none;
 }
 
@@ -182,13 +185,12 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     outline-color: var(--button-color);
 }
 
+/* Error Container */
 .error-container {
-    /* display: none; */
     border: 1px solid red;
     margin-bottom: 15px;
     padding: 10px;
     width: 350px;
-
 }
 
 .error-container p {
@@ -196,74 +198,52 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     text-align: center;
 }
 
-
-
-/* Container for Date/Time Selector in Row */
+/* Date and Time Selector Styling */
 .select-date-container,
 .select-time-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-/* Label Styling */
-.select-date-container label,
-.select-time-container label {
-    font-size: 0.9em;
-    color: #f8f8f8;
-    flex: 0 0 90px; /* Fixed width to align labels consistently */
-}
-
-/* Selector Styling */
 .select-date,
 .select-time {
     cursor: pointer;
     padding: 8px;
     background-color: #1c1c1c;
-    color: #fff;
+    color: var(--text-color);
     border-radius: 2px;
     border: 1px solid #666;
     text-align: center;
-    flex: 1; /* Takes up the remaining space */
+    flex: 1;
 }
 
 .select-date:hover,
 .select-time:hover {
     border: 1px solid var(--button-color);
-    cursor: pointer;
-}
-.select-date-container > label,
-.select-time-container > label {
- margin: auto;
 }
 
-
-
-/* Event Card Container */
+/* Event Card Styling */
 .event-card {
     background-color: #1c1c1c;
     color: #f8f8f8;
     padding: 20px;
-    border: 1px solid white;
+    border: 1px solid var(--text-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 300px;
     min-width: 300px;
     margin: 10px auto;
     position: relative;
-    font-family: Arial, sans-serif;
 }
 
-/* Title Styling */
+/* Event Card Elements */
 .event-card .card-title {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
 }
 
-/* Description Styling */
 .event-card .card-description {
     font-size: 0.9em;
     color: #c0c0c0;
@@ -271,7 +251,6 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     line-height: 1.5;
 }
 
-/* Date and Time Styling */
 .event-card .card-datetime,
 .event-card .card-duration {
     font-size: 0.85em;
@@ -279,7 +258,7 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     margin-bottom: 5px;
 }
 
-/* Icons Styling */
+/* Delete and Edit Icons */
 .event-card .close {
     font-size: 1.3em;
     color: #ff5050;
@@ -287,7 +266,6 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     position: absolute;
     top: 15px;
     right: 15px;
-    margin-left: 15px;
     transition: color 0.2s;
 }
 
@@ -301,7 +279,7 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     right: 45px;
 }
 
-.event-card .close:nth-child(7):hover {
+.event-card .close:nth-child(5):hover {
     color: #ccccff;
 }
 
@@ -310,6 +288,7 @@ a, p, h1, label, input[type="button"], input[type="submit"] {
     overflow-y: scroll;
 }
 
+/* Hide Scrollbar */
 .dashboard::-webkit-scrollbar {
     display: none;
-  }
+}
