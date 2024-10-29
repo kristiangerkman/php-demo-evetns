@@ -11,35 +11,35 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Date Picker
-        flatpickr("#date-picker", {
+        flatpickr("#update-date-picker", {
             dateFormat: "Y-m-d",
             onChange: function(selectedDates, dateStr) {
-                document.getElementById("date-picker").innerText = dateStr;
-                document.getElementById("date-input").value = dateStr;
+                document.getElementById("update-date-picker").innerText = dateStr;
+                document.getElementById("update-date-input").value = dateStr;
             }
         });
 
         // Start Time Picker
-        flatpickr("#start-time-picker", {
+        flatpickr("#update-start-time-picker", {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i",
             time_24hr: true,
             onChange: function(selectedDates, timeStr) {
-                document.getElementById("start-time-picker").innerText = timeStr;
-                document.getElementById("start-time-input").value = timeStr;
+                document.getElementById("update-start-time-picker").innerText = timeStr;
+                document.getElementById("update-start-time-input").value = timeStr;
             }
         });
 
         // End Time Picker
-        flatpickr("#end-time-picker", {
+        flatpickr("#update-end-time-picker", {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i",
             time_24hr: true,
             onChange: function(selectedDates, timeStr) {
-                document.getElementById("end-time-picker").innerText = timeStr;
-                document.getElementById("end-time-input").value = timeStr;
+                document.getElementById("update-end-time-picker").innerText = timeStr;
+                document.getElementById("update-end-time-input").value = timeStr;
             }
         });
 
@@ -47,38 +47,39 @@
 </script>
 
 <body>
-    <div class="modal" id="create-new-event-form">
+    <div class="modal" id="update-event-form">
         <div class="form-container modal-content">
-            <span class="close">&times;</span>
-            <h1>Create Event</h1>
+            <span class="close" id="close-btn">&times;</span>
+            <h1>Edit Event</h1>
             <div class="card-form" id="card-form">
-                <form action="post_actions.php" method="post">
+                <form action="" method="post">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" />
+                    <input type="text" name="update-title" id="update-title" />
 
                     <label for="description">Description:</label>
-                    <textarea name="description" id="description" rows="4"></textarea>
+                    <textarea name="update-description" id="update-description" rows="4"></textarea>
 
                     <div class="select-date-container">
                         <label for="date-picker">Date:</label>
-                        <p id="date-picker" class="select-date">Click to select a date</p>
-                        <input type="hidden" id="date-input" name="date">
+                        <p id="update-date-picker" class="select-date">Click to select a date</p>
+                        <input type="hidden" id="update-date-input" name="update-date">
                     </div>
 
                     <div class="select-time-container">
                         <label for="start-time-picker">Start Time:</label>
-                        <p id="start-time-picker" class="select-time">00:00</p>
-                        <input type="hidden" id="start-time-input" name="start_time">
+                        <p id="update-start-time-picker" class="select-time">00:00</p>
+                        <input type="hidden" id="update-start-time-input" name="update-start_time">
                     </div>
 
                     <div class="select-time-container">
                         <label for="end-time-picker">End Time:</label>
-                        <p id="end-time-picker" class="select-time">00:00</p>
-                        <input type="hidden" id="end-time-input" name="end_time">
+                        <p id="update-end-time-picker" class="select-time">00:00</p>
+                        <input type="hidden" id="update-end-time-input" name="update-end_time">
                     </div>
 
+                    <input type="hidden" id="update-event-id" name="update-event_id">
                     <div class="button-container">
-                        <input class="button" type="submit" value="Create" id="create">
+                        <input class="button" type="submit" value="Update" id="create">
                     </div>
                 </form>
             </div>

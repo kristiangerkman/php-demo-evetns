@@ -25,68 +25,68 @@ class EventHandler
             return $error;
         }
 
-        try {
-            if ($stmt->execute()) {
-                if (is_int($db->insert_id)) {
-                    return $db->insert_id;
-                } else {
-                    $error = "insert_id not int";
-                    return $error;
-                }
-            }
-        } catch (mysqli_sql_exception $e) {
-            if ($e->getCode() === 1062) { // MySQL error code for duplicate entry
-                $error = "Error: Username already exists.";
-                return $error;
+
+        if ($stmt->execute()) {
+            if (is_int($db->insert_id)) {
+                return $db->insert_id;
             } else {
-                $error = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                $error = "insert_id not int";
                 return $error;
             }
+        } else {
+            $error = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            return $error;
         }
     }
 
-    function update_event($db, $input_username, $input_password)
+    function update_event($db, $event_id, $title, $description, $date, $start_time, $end_time)
     {
         $error = null;
-        $sql = "SELECT id, password FROM users WHERE users.username = ?";
-
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param('s', $input_username);
-
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        if ($result->num_rows == 1) {
-            $result_array = $result->fetch_array(MYSQLI_NUM);
-
-            $user_id = $result_array[0];
-            $password = $result_array[1];
-
-            if (password_verify($input_password, $password)) {
-                return $user_id;
+    
+        $sql = "UPDATE events SET
+                    title = ?,
+                    description = ?,
+                    date = ?,
+                    start_time = ?,
+                    end_time = ?,
+                    updated_at = NOW()
+                WHERE id = ?";
+    
+        if (!($stmt = $db->prepare($sql))) {
+            $error = "Prepare failed: (" . $db->errno . ") " . $db->error;
+            return $error;
+        }
+    
+        if (!$stmt->bind_param("sssssi", $title, $description, $date, $start_time, $end_time, $event_id)) {
+            $error = "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            return $error;
+        }
+    
+        if ($stmt->execute()) {
+            if ($stmt->affected_rows > 0) {
+                return true;
             } else {
-                $error .= "Incorrect username or password";
+                $error = "No rows updated. Check if the event ID exists.";
+                return $error;
             }
         } else {
-            $error .= "Incorrect username or password";
+            $error = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            return $error;
         }
-
-        return $error;
     }
 
     function delete_event($db, $event_id)
     {
         $sql = "DELETE FROM events WHERE id = ?";
-    
+
         $stmt = $db->prepare($sql);
         if (!$stmt) {
             echo "Prepare failed: (" . $db->errno . ") " . $db->error;
             return false;
         }
-    
+
         $stmt->bind_param('i', $event_id);
-    
+
         if ($stmt->execute()) {
             // Confirm if a row was actually deleted
             if ($stmt->affected_rows > 0) {

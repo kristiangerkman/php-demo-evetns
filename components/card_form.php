@@ -49,7 +49,7 @@
 <body>
     <div class="modal" id="create-new-event-form">
         <div class="form-container modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="close-btn">&times;</span>
             <h1>Create Event</h1>
             <div class="card-form" id="card-form">
                 <form action="" method="post">
